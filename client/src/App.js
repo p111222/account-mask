@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import CorporateUserDetails from './components/CorporateUserDetails';
 import CorporateAccountDetails from './components/CorporateAccountDetails';
+import Details from './pages/details/Details.js';
 import { AuthContext } from './context/authContext';
 import { useContext } from 'react';
 import Home from "./pages/home/Home";
@@ -30,9 +31,10 @@ function App() {
   };
 
   const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
+    if (!currentUser ) {
       return <Navigate to="/login" />;
     }
+
     return children;
   };
 
@@ -47,7 +49,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <CorporateUserDetails />
+          element: <Details />
         },
         {
           path: "/corporateaccountdetails",
@@ -66,7 +68,7 @@ function App() {
     <div className="App">
       <RouterProvider router={router} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
