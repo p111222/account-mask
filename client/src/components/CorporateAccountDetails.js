@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
 import { makeRequest } from '../axios';
 import { useContext } from 'react';
 import { AuthContext } from '../context/authContext';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const CorporateAccountDetails = () => {
     const { currentUser } = useContext(AuthContext)
+    const { id } = useParams();
     const [corporateAccountDetails, setCorporateAccountDetails] = useState();
     useEffect(() => {
-        makeRequest.get(`/corporate/userdetails/account/${currentUser.userid}`)
-            .then((res) => {
-                setCorporateAccountDetails(res.data[0])
-            })
+        if (!id) {
+            makeRequest.get(`/corporate/userdetails/account/${currentUser.userid}`)
+                .then((res) => {
+                    setCorporateAccountDetails(res.data[0])
+                })
+        } else {
+            makeRequest.get(`/corporate/userdetails/account/${id}`)
+                .then((res) => {
+                    setCorporateAccountDetails(res.data[0])
+                })
+        }
     }, []);
     //console.log(corporateAccountDetails);
     return (
@@ -30,8 +42,14 @@ const CorporateAccountDetails = () => {
                             <span>{corporateAccountDetails && corporateAccountDetails.corporateactualaccount}</span>
                         </div>
                     </CardContent>
+                    <CardActions>
+                        <Button size="small">
+                            <Link to='/'>Go Back</Link>
+                        </Button>
+                    </CardActions>
                 </Card>
             </div>
+
         </div>
     )
 }

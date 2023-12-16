@@ -30,14 +30,11 @@ const CorporateUserDetails = () => {
                         </div>
                         <div className="d-flex flex-column gap-2">
                             <span>{corporateDetails && corporateDetails.corporateid}</span>
-                            <span>{corporateDetails && corporateDetails.corporatename}</span>
+                            <span><Link to='/corporateaccountdetails'>
+                                {corporateDetails && corporateDetails.corporatename}</Link></span>
                         </div>
                     </CardContent>
-                    <CardActions>
-                        <Button size="small">
-                            <Link to='/corporateaccountdetails'>Details</Link>
-                        </Button>
-                    </CardActions>
+
                 </Card>
             </div>
         </div>

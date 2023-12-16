@@ -13,16 +13,16 @@ const Details = () => {
     const handleLogout = () => {
         makeRequest.get('/logout')
             .then((res) => {
-                if(res.status===200){
+                if (res.status === 200) {
                     localStorage.clear();
-                    navigate("/login")
+                    window.location.reload()
                 }
-             })
+            })
     }
 
     return (
         <>
-            <button onClick={handleLogout} className='btn btn-danger me-3 mt-2 position-fixed' style={{ right: '0' }}>Logout</button>
+            <button onClick={handleLogout} className='btn btn-danger me-3 mt-2 position-fixed' style={{ right: '0', zIndex: '999' }}>Logout</button>
             {currentUser.usertype == 'bank' ?
                 <AllCorporateDetails /> :
                 <CorporateUserDetails />}

@@ -55,6 +55,10 @@ function App() {
           path: "/corporateaccountdetails",
           element: <CorporateAccountDetails />
         },
+        {
+          path: "/corporateaccountdetails/:id",
+          element: <CorporateAccountDetails />
+        },
       ]
     },
     {
